@@ -23,7 +23,7 @@ Microsoft Copilot Studio · SharePoint Online · Power Automate · Microsoft Tea
 
 ## Files
 - `index.html`: the case study page (served by GitHub Pages)
-- `docs/agent-instructions.txt`: the agent's full instructions
-- `images/`: screenshots
+- `agent-instructions.txt`: the agent's full instructions
+- `1.png` to `12.png`: stills from the demo; `demo.mp4`: the demo video
 
 Prairie Ridge Energy is a fictional company created for this project. Directive 071 is a public document from the Alberta Energy Regulator; this project is not affiliated with the AER.

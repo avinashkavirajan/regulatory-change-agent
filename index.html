@@ -74,8 +74,13 @@ p{margin:0 0 16px;max-width:68ch}
 .steps p{font-size:16px}
 figure{margin:0}
 .shot{background:var(--sheet);border:1px solid var(--rule);display:block;width:100%;height:auto}
+figure.demo{margin:24px 0 0}
+.gallery{display:grid;grid-template-columns:1fr 1fr;gap:28px 28px;max-width:1000px;margin:28px auto 0}
+@media (max-width:760px){.gallery{grid-template-columns:1fr}}
+figure.demo video{background:#000}
 .shot-missing{background:repeating-linear-gradient(-45deg,var(--sheet),var(--sheet) 10px,var(--paper) 10px,var(--paper) 20px);border:1px dashed var(--rule);aspect-ratio:16/10;display:grid;place-items:center;text-align:center;padding:16px;font-size:14px;color:var(--muted)}
 figcaption{font-size:14px;color:var(--muted);margin-top:8px}
+figure a{display:block;cursor:zoom-in}
 
 /* Results table */
 table{width:100%;border-collapse:collapse;background:var(--sheet);border:1px solid var(--rule);font-size:16px;margin:20px 0 8px}
@@ -168,42 +173,62 @@ footer{border-top:1px solid var(--rule);padding:36px 0 56px;font-size:15px;color
     <div class="wrap">
       <h2>How it works</h2>
       <p>One conversation takes a regulatory change from question to an approved, recorded decision. The agent drafts; people decide.</p>
+      <figure class="demo">
+        <video class="shot" controls preload="metadata" playsinline muted aria-label="Demo: the agent drafts a change request, the analyst confirms, the approver approves in Teams, and SharePoint records the decision">
+          <source src="demo.mp4" type="video/mp4">
+        </video>
+        <figcaption>Silent demo: draft, confirm, approve in Teams, recorded in SharePoint.</figcaption>
+      </figure>
     </div>
     <ol class="steps">
       <li>
         <div>
-          <h3>Ask about a procedure</h3>
-          <p>An analyst asks, for example, "Analyze PRE-EP-004 against the new Directive 071". The agent searches both editions and the company documents, and answers only from those sources.</p>
+          <h3>Analyse a procedure</h3>
+          <p>An analyst asks, for example, "Analyze PRE-EP-004 against the new Directive 071". The agent traces each of the procedure's requirements into the renumbered edition, labels what changed, and lists new obligations the company doesn't cover yet.</p>
         </div>
-        <figure><img class="shot" src="images/04-impact-analysis.png" alt="Impact analysis table produced by the agent" data-label="Impact analysis table"><figcaption>Each requirement gets its old and new clause, a change type, and a confidence level. New obligations with no matching requirement are listed as gaps.</figcaption></figure>
+        <figure><img class="shot" src="13.png" alt="Impact analysis table produced by the agent" data-label="Impact analysis table"><figcaption>Old and new clause, change type and confidence for every requirement, followed by the gaps.</figcaption></figure>
       </li>
       <li>
         <div>
-          <h3>Draft a change request</h3>
+          <h3>Ask for a change request</h3>
+          <p>For one of those changes, the analyst asks the agent to draft a change request: here, the ICS change affecting procedure PRE-EP-003. The agent searches both Directive editions and the company documents, and answers only from those sources.</p>
+        </div>
+        <figure><img class="shot" src="2.png" alt="The agent searching both Directive editions" data-label="Agent searching sources"><figcaption>Each search is visible: here the agent pulls the exact 2023 wording before comparing it with the new edition.</figcaption></figure>
+      </li>
+      <li>
+        <div>
+          <h3>Get a complete draft</h3>
           <p>The agent fills in the company's change request template: what changed, which requirements, procedures and systems are affected, the compliance risk, and the evidence behind each claim.</p>
         </div>
-        <figure><img class="shot" src="images/05-change-request.png" alt="Change request drafted by the agent" data-label="Drafted change request"><figcaption>Every draft is marked as AI-generated and pending review.</figcaption></figure>
+        <figure><img class="shot" src="3.png" alt="Change request drafted by the agent" data-label="Drafted change request"><figcaption>Old and new clause, affected items with owners, High risk with a reason, and every draft marked as AI-generated.</figcaption></figure>
       </li>
       <li>
         <div>
           <h3>Confirm before anything is saved</h3>
-          <p>Nothing is written until the analyst says yes. If they decline, the agent confirms that nothing was saved.</p>
+          <p>Nothing is written until the analyst confirms. If they decline, the agent says that nothing was saved.</p>
         </div>
-        <figure><img class="shot" src="images/06-confirmation.png" alt="Confirmation prompt before submitting" data-label="Confirmation prompt"><figcaption>The submit tool always asks first. The agent cannot run it on its own.</figcaption></figure>
+        <figure><img class="shot" src="5.png" alt="Confirmation prompt before submitting" data-label="Confirmation prompt"><figcaption>The submit tool always asks first. The agent cannot run it on its own.</figcaption></figure>
       </li>
       <li>
         <div>
           <h3>Save and send for approval</h3>
-          <p>A Power Automate flow saves the request to a SharePoint list, gives it an ID such as CR-2026-6, and starts an approval in Microsoft Teams.</p>
+          <p>A Power Automate flow saves the request to a SharePoint list, gives it an ID, and starts an approval in Microsoft Teams.</p>
         </div>
-        <figure><img class="shot" src="images/09-teams-approval.png" alt="Approval request in Microsoft Teams" data-label="Teams approval request"><figcaption>The approver sees the clauses, risk, affected items and a warning that the draft was AI-generated.</figcaption></figure>
+        <figure><img class="shot" src="6.png" alt="Agent reporting CR-2026-7 submitted" data-label="Submission confirmed"><figcaption>The agent reports the new ID, CR-2026-7, and that it is waiting for a person to approve it.</figcaption></figure>
       </li>
       <li>
         <div>
-          <h3>Record the decision</h3>
-          <p>When the approver responds, a second flow writes the outcome, the approver's name, the date and their comments back to the list.</p>
+          <h3>A person decides in Teams</h3>
+          <p>The compliance approver reads the summary, adds a comment and approves or rejects. The agent has no way to do this itself.</p>
         </div>
-        <figure><img class="shot" src="images/10-audit-trail.png" alt="SharePoint list showing approved and rejected change requests" data-label="Audit trail in SharePoint"><figcaption>The list is the audit trail: what was proposed, by whom, and who approved or rejected it.</figcaption></figure>
+        <figure><img class="shot" src="8.png" alt="Approval request open in Microsoft Teams" data-label="Teams approval"><figcaption>The request carries a warning that the draft is AI-generated and should be checked against the Directive.</figcaption></figure>
+      </li>
+      <li>
+        <div>
+          <h3>The decision is recorded</h3>
+          <p>A second flow writes the outcome, the approver's name, the date and their comment back to the list.</p>
+        </div>
+        <figure><img class="shot" src="11.png" alt="SharePoint list showing approved change requests with approver, comments and date" data-label="Audit trail in SharePoint"><figcaption>The list is the audit trail: what was proposed, who decided, when, and why.</figcaption></figure>
       </li>
     </ol>
   </div>
@@ -221,7 +246,7 @@ footer{border-top:1px solid var(--rule);padding:36px 0 56px;font-size:15px;color
       <li><strong>No legal advice.</strong> Questions about fines or enforcement go to the compliance or legal team.</li>
       <li><strong>Knows when a rule doesn't apply.</strong> Two trap questions describe requirements that don't apply to this company; the agent explained why in every run.</li>
     </ul>
-    <figure style="margin-top:20px"><img class="shot" src="images/12-guardrail.png" alt="Agent refusing to approve a change request" data-label="Guardrail refusal"></figure>
+    <figure style="margin-top:20px"><img class="shot" src="15.png" alt="Agent refusing to approve a change request" data-label="Refusal to approve"><figcaption>Asked to approve a change request, the agent refuses and points to the human approver.</figcaption></figure>
   </div>
 </section>
 
@@ -243,7 +268,7 @@ footer{border-top:1px solid var(--rule);padding:36px 0 56px;font-size:15px;color
         <tr><td>Time per analysis</td><td class="n">55 s</td><td>About 6 searches each. The save-and-approve flow itself runs in about 1 second.</td></tr>
       </tbody>
     </table>
-    <figure style="margin-top:24px"><img class="shot" src="images/11-scorecard.png" alt="Scorecard spreadsheet with results for three runs" data-label="Scorecard"></figure>
+    <figure style="margin-top:24px"><img class="shot" src="14.png" alt="Scorecard spreadsheet with results for three runs" data-label="Scorecard"><figcaption>Every run was scored row by row against the answer key.</figcaption></figure>
   </div>
 </section>
 
@@ -305,7 +330,7 @@ footer{border-top:1px solid var(--rule);padding:36px 0 56px;font-size:15px;color
     </ul>
     <h3>More detail</h3>
     <ul class="plain">
-      <li><a href="docs/agent-instructions.txt">The agent's full instructions</a></li>
+      <li><a href="agent-instructions.txt">The agent's full instructions</a></li>
       <li><a href="https://github.com/YOUR-USERNAME/regulatory-change-agent">Project files on GitHub</a></li>
     </ul>
   </div>
@@ -327,6 +352,21 @@ document.querySelectorAll('img.shot').forEach(function(img){
     img.replaceWith(d);
   }
   if(img.complete && img.naturalWidth===0){swap()} else {img.addEventListener('error',swap)}
+});
+// Click a screenshot to open it full size
+document.querySelectorAll('img.shot').forEach(function(img){
+  var a=document.createElement('a');a.href=img.getAttribute('src');a.target='_blank';a.rel='noopener';
+  a.title='Open full size';img.parentNode.insertBefore(a,img);a.appendChild(img);
+});
+// Same for the demo video
+document.querySelectorAll('figure.demo video source').forEach(function(src){
+  src.addEventListener('error',function(){
+    var fig=src.closest('figure');
+    var d=document.createElement('div');
+    d.className='shot-missing';
+    d.textContent='Demo video coming';
+    fig.replaceChildren(d);
+  });
 });
 </script>
 </body>
