@@ -2,7 +2,7 @@
 
 A Microsoft Copilot Studio agent that compares two editions of AER Directive 071 (Feb 2023 and Dec 2025), maps each change to a company's procedures and requirements, drafts change requests, and routes them for human approval in Microsoft Teams, with every decision recorded in SharePoint.
 
-**Case study:** https://YOUR-USERNAME.github.io/regulatory-change-agent/
+**Case study:** https://avinashkavirajan.github.io/regulatory-change-agent/
 
 ## What it does
 1. Analyses a company procedure against the new Directive and lists changed requirements and new obligations, with citations.
